@@ -1,27 +1,29 @@
 package fakerest.steps;
 
+import java.io.IOException;
+
+import fakerest.pages.fakeRestPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class fakerestSteps {
+	
+	fakeRestPage fake = new fakeRestPage();
 
 	@Given("que acesso a API {string}")
-	public void que_acesso_a_api(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void que_acesso_a_api(String url) {
+	    fake.accessApi(url);
 	}
 
 	@When("realizo uma request GET para {string}")
-	public void realizo_uma_request_get_para(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void realizo_uma_request_get_para(String endpoint) throws IOException {
+	    fake.sendRequestGetForEndpoint(endpoint);
 	}
 
 	@Then("eu valido a resposta com a lista completa de livros")
-	public void eu_valido_a_resposta_com_a_lista_completa_de_livros() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_a_resposta_com_a_lista_completa_de_livros() throws IOException {
+	    fake.validateResponseBookListComplete();
 	}
 
 	@When("realizo uma request GET para {string} e id")
