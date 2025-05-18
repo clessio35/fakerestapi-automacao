@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
     features = "src/test/resources/features",
     glue = {"fakerest.steps", "fakerest.utils"},
-    tags = "@list-books", 
+    tags = "@book-details", 
     publish = true,
     plugin = {"pretty", "html:target/cucumber-reports"}
 )

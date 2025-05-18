@@ -27,15 +27,13 @@ public class fakerestSteps {
 	}
 
 	@When("realizo uma request GET para {string} e id")
-	public void realizo_uma_request_get_para_e_id(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void realizo_uma_request_get_para_e_id(String endpoint) throws IOException {
+	    fake.sendRequestGetForSpecificId(endpoint);
 	}
 
 	@Then("eu valido os dados do livro específico")
-	public void eu_valido_os_dados_do_livro_específico() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_os_dados_do_livro_específico() throws IOException {
+	    fake.validateResponseSpecificBookId();
 	}
 
 	@Then("eu valido que o erro retornado tem o status code {string}")
