@@ -44,14 +44,12 @@ public class FakerestSteps {
 	
 	@When("realizo uma request POST para {string}")
 	public void realizo_uma_request_post_para(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    fake.sendRequestPostForEndpoint(string);
 	}
 
 	@Then("eu valido que a criação foi bem-sucedida")
-	public void eu_valido_que_a_criação_foi_bem_sucedida() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_que_a_criação_foi_bem_sucedida() throws IOException {
+	    fake.validateResponsePostMethod();
 	}
 
 	@When("realizo uma request POST para {string} com dados inválidos")

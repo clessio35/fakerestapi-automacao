@@ -11,6 +11,7 @@ public class Hooks {
     @Before
     public void before(Scenario scenario) {
         scenarioName = scenario.getName();
+        System.out.println(">>>>> Hook executado - cenário: " + scenarioName);
     }
 
     public static String getScenarioName() {

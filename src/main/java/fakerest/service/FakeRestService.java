@@ -5,9 +5,13 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.hamcrest.Matchers;
+import org.json.JSONObject;
+
+import com.github.javafaker.Faker;
 
 import fakerest.utils.EvidenceUtils;
 import fakerest.utils.Hooks;
@@ -67,7 +71,7 @@ public class FakeRestService {
 	public void validateResponseSpecificBookId() throws IOException {
 		System.out.println("Validate response of book id");
 		int id = response.jsonPath().getInt("id");
-		response.then().statusCode(200).log().body()
+		response.then().statusCode(200).log().body().statusCode(200)
 			.body("id", Matchers.equalTo(id));
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
@@ -75,9 +79,41 @@ public class FakeRestService {
 	public void validateResponseWithErrorCode(String status) throws IOException {
 		int sc = Integer.parseInt(status);
 		System.out.println("Validate response with error");
-		response.then().log().body()
+		response.then().log().body().statusCode(200)
 			.body("title", Matchers.equalTo("Not Found"))
 			.body("status", Matchers.equalTo(sc));
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+	
+	public JSONObject payload() {
+		Faker fake = new Faker();
+		HashMap<String, Object> info = new HashMap<String, Object>();
+		info.put("id", fake.number().randomDigitNotZero());
+		info.put("title", fake.book().title());
+		info.put("description", fake.lorem().sentence(10));
+		info.put("pageCount", fake.number().numberBetween(100, 1000));
+		info.put("excerpt", fake.lorem().paragraph());
+		JSONObject json = new JSONObject(info);
+		return json;
+	}
+
+	public void sendRequestPostForEndpoint(String endpoint) {
+		System.out.println("Post method");
+		response = RestAssured.given().log().body()
+					.when().contentType(ContentType.JSON)
+					.body(payload().toString()).post(endpoint);
+	}
+
+	public void validateResponsePostMethod() throws IOException {
+		System.out.println("Validate Post method");
+		response.then().log().body()
+		.statusCode(200)
+	    .body("id", Matchers.instanceOf(Integer.class))
+	    .body("title", Matchers.instanceOf(String.class))
+	    .body("description", Matchers.instanceOf(String.class))
+	    .body("pageCount", Matchers.instanceOf(Integer.class))
+	    .body("excerpt", Matchers.instanceOf(String.class))
+	    .body("publishDate", Matchers.notNullValue());
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 }

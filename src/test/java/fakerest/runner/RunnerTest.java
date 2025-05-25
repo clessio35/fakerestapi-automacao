@@ -8,8 +8,8 @@ import io.cucumber.junit.CucumberOptions;
 @RunWith(Cucumber.class)
 @CucumberOptions(
     features = "src/test/resources/features",
-    glue = {"fakerest.steps"},
-    tags = "@nonexistent-book", 
+    glue = {"fakerest.steps", "fakerest.utils"},
+    tags = "@create-valid-book", 
     publish = true,
     plugin = {"pretty", "html:target/cucumber-reports"}
 )
