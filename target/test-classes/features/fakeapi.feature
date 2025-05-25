@@ -26,7 +26,7 @@ Feature: Testes de API - Fake REST API
     When realizo uma request GET para "<endpoint>"
     Then eu valido que o erro retornado tem o status code "<status>"
     Examples:
-      | url                                      | endpoint    | status |
+      | url                                     	 	 | endpoint    | status |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books/9999 | 404    |
 
   @create-valid-book

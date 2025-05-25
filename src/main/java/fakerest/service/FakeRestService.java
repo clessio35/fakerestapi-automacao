@@ -71,4 +71,13 @@ public class FakeRestService {
 			.body("id", Matchers.equalTo(id));
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
+
+	public void validateResponseWithErrorCode(String status) throws IOException {
+		int sc = Integer.parseInt(status);
+		System.out.println("Validate response with error");
+		response.then().log().body()
+			.body("title", Matchers.equalTo("Not Found"))
+			.body("status", Matchers.equalTo(sc));
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
 }

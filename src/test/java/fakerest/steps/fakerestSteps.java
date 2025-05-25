@@ -37,8 +37,8 @@ public class FakerestSteps {
 	}
 
 	@Then("eu valido que o erro retornado tem o status code {string}")
-	public void eu_valido_que_o_erro_retornado_tem_o_status_code(String string) {
-		   throw new io.cucumber.java.PendingException();
+	public void eu_valido_que_o_erro_retornado_tem_o_status_code(String status) throws IOException {
+		 fake.validateResponseWithErrorCode(status);
 	}
 	
 	
