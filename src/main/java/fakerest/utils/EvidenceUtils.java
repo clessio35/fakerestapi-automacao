@@ -14,7 +14,7 @@ import com.itextpdf.layout.element.Paragraph;
 
 import io.restassured.response.Response;
 
-public class BasePage {
+public class EvidenceUtils {
 
 	public static void takeScreenshot(Response response, String scenarioName) throws IOException {
 	    // Formatando a data e hora

@@ -2,14 +2,14 @@ package fakerest.steps;
 
 import java.io.IOException;
 
-import fakerest.pages.fakeRestPage;
+import fakerest.service.FakeRestService;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class fakerestSteps {
+public class FakerestSteps {
 	
-	fakeRestPage fake = new fakeRestPage();
+	FakeRestService fake = new FakeRestService();
 
 	@Given("que acesso a API {string}")
 	public void que_acesso_a_api(String url) {

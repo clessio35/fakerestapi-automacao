@@ -1,4 +1,4 @@
-package fakerest.pages;
+package fakerest.service;
 
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.notNullValue;
@@ -9,13 +9,13 @@ import java.util.List;
 
 import org.hamcrest.Matchers;
 
-import fakerest.utils.BasePage;
+import fakerest.utils.EvidenceUtils;
 import fakerest.utils.Hooks;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
-public class fakeRestPage {
+public class FakeRestService {
 
 	private Response response;
 	
@@ -29,7 +29,7 @@ public class fakeRestPage {
 		response = RestAssured.given().log().body()
 				.when().contentType(ContentType.JSON)
 				.get(endpoint);
-		BasePage.takeScreenshot(response, Hooks.getScenarioName());
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
 	public void validateResponseBookListComplete() throws IOException {
@@ -41,7 +41,7 @@ public class fakeRestPage {
 	    .body("pageCount", everyItem(notNullValue()))
 	    .body("excerpt", everyItem(notNullValue()))
 	    .body("publishDate", everyItem(notNullValue()));
-		BasePage.takeScreenshot(response, Hooks.getScenarioName());
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 	
 	public Integer captureIdBook(String endpoint) {
@@ -61,7 +61,7 @@ public class fakeRestPage {
 		response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
 					.when().get(endpoint + id);
-		BasePage.takeScreenshot(response, Hooks.getScenarioName());
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
 	public void validateResponseSpecificBookId() throws IOException {
@@ -69,6 +69,6 @@ public class fakeRestPage {
 		int id = response.jsonPath().getInt("id");
 		response.then().statusCode(200).log().body()
 			.body("id", Matchers.equalTo(id));
-		BasePage.takeScreenshot(response, Hooks.getScenarioName());
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 }
