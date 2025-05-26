@@ -43,8 +43,8 @@ public class FakerestSteps {
 	
 	
 	@When("realizo uma request POST para {string}")
-	public void realizo_uma_request_post_para(String string) {
-	    fake.sendRequestPostForEndpoint(string);
+	public void realizo_uma_request_post_para(String endpoint) {
+	    fake.sendRequestPostForEndpoint(endpoint);
 	}
 
 	@Then("eu valido que a criação foi bem-sucedida")
@@ -53,15 +53,13 @@ public class FakerestSteps {
 	}
 
 	@When("realizo uma request POST para {string} com dados inválidos")
-	public void realizo_uma_request_post_para_com_dados_inválidos(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void realizo_uma_request_post_para_com_dados_inválidos(String endpoint) {
+		fake.sendRequestPostWithInvalidData(endpoint);
 	}
 
 	@Then("eu valido o erro retornado")
-	public void eu_valido_o_erro_retornado() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_o_erro_retornado() throws IOException {
+	    fake.validateResponseWithResponseError();
 	}
 
 	@When("realizo uma request PUT para {string} com novos dados")

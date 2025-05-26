@@ -116,4 +116,30 @@ public class FakeRestService {
 	    .body("publishDate", Matchers.notNullValue());
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
+
+	public JSONObject invalidPayload() {
+		Faker fake = new Faker();
+		HashMap<String, Object> info = new HashMap<String, Object>();
+		info.put("id", "");
+		info.put("title", fake.book().title());
+		info.put("description", fake.lorem().sentence(10));
+		info.put("pageCount", "");
+		info.put("excerpt", fake.lorem().paragraph());
+		JSONObject json = new JSONObject(info);
+		return json;
+	}
+	public void sendRequestPostWithInvalidData(String endpoint) {
+		System.out.println("Post method with invalid data");
+		response = RestAssured.given().log().body()
+					.when().contentType(ContentType.JSON)
+					.body(invalidPayload().toString()).post(endpoint);
+	}
+	public void validateResponseWithResponseError() throws IOException {
+		System.out.println("Validate invalid Post method");
+		response.then().log().body()
+		.statusCode(400)
+	    .body("title", Matchers.equalTo("One or more validation errors occurred."))
+	    .body("status", Matchers.instanceOf(Integer.class));
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
 }
