@@ -28,25 +28,28 @@ iText 9	Geração de evidências em PDF
 Java Faker 1.0.2	Geração de dados dinâmicos para testes
 org.json	Manipulação de objetos JSON
 
+
 📁 Estrutura do Projeto
-bash
-Copy
-Edit
+
 fakerestapi-automacao/
 ├── src/
 │   ├── main/
 │   │   └── java/
-│   │       ├── fakerest/service/       # Lógica de consumo da API
-│   │       └── fakerest/utils/         # Geração de evidências e Hooks
+│   │       └── fakerest/
+│   │           ├── service/            # Lógica de consumo da API
+│   │           └── utils/              # Geração de evidências e Hooks
 │   └── test/
 │       ├── java/
-│       │   ├── fakerest/runner/        # RunnerTest para execução Cucumber
-│       │   └── fakerest/steps/         # Steps do Cucumber
+│       │   └── fakerest/
+│       │       ├── runner/             # RunnerTest para execução com Cucumber
+│       │       └── steps/              # Definição dos passos dos testes
 │       └── resources/
-│           ├── features/               # Cenários em Gherkin
+│           ├── features/               # Arquivos .feature (BDD)
 │           └── evidences/              # Evidências geradas (PDFs)
-├── Dockerfile                          # Build da imagem Docker
-├── pom.xml                             # Configuração do Maven
+├── Dockerfile                          # Configuração de build Docker
+├── pom.xml                             # Arquivo de configuração do Maven
+
+
 ▶️ Como Executar Localmente
 Pré-requisitos
 Java 17 instalado
@@ -54,37 +57,31 @@ Java 17 instalado
 Maven 3.8+ instalado
 
 Comando de execução:
-bash
-Copy
-Edit
 mvn clean test
+
 🐳 Execução com Docker
+
 Este projeto inclui um Dockerfile com Maven 3.9.6 e Java 17 (Temurin).
 
 🔨 Construir a imagem
-bash
-Copy
-Edit
+
 docker build -t fakerestapi-tests .
+
 ▶️ Executar os testes
-bash
-Copy
-Edit
+
 docker run --rm fakerestapi-tests
+
 📝 Dockerfile utilizado
+
 Dockerfile
-Copy
-Edit
 FROM maven:3.9.6-eclipse-temurin-17
-
 WORKDIR /app
-
 COPY pom.xml .
 RUN mvn dependency:go-offline
-
 COPY . .
-
 CMD ["mvn", "clean", "test"]
+
+
 ⚙️ Integração Contínua
 GitHub Actions: Automatização via workflows YAML
 
