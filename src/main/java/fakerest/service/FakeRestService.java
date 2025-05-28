@@ -162,4 +162,20 @@ public class FakeRestService {
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 
 	}
+
+	public void sendRequestDeleteWithEndpoint(String endpoint) {
+		System.out.println("Send request Delete");
+		int id = captureIdBook(endpoint);
+		response = RestAssured.given().log().body()
+				.contentType(ContentType.JSON)
+				.when().delete(endpoint + id);
+	}
+
+	public void validateResponseDeleteMethod(String statusCode) throws IOException {
+		System.out.println("Validate status code delete method");
+		response.then().log().body()
+			.statusCode(200);
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+	
 }

@@ -73,15 +73,13 @@ public class FakerestSteps {
 	}
 
 	@When("realizo uma request DELETE para {string}")
-	public void realizo_uma_request_delete_para(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void realizo_uma_request_delete_para(String endpoint) {
+	    fake.sendRequestDeleteWithEndpoint(endpoint);
 	}
 
 	@Then("eu valido o status de resposta {string}")
-	public void eu_valido_o_status_de_resposta(String string) {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_o_status_de_resposta(String statusCode) throws IOException {
+	    fake.validateResponseDeleteMethod(statusCode);
 	}
 
 	@Then("eu valido a resposta com a lista completa de atividades")

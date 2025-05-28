@@ -63,7 +63,7 @@ Feature: Testes de API - Fake REST API
     Then eu valido o status de resposta "<statusCode>"
     Examples:
       | url                                      | endpoint   | statusCode |
-      | https://fakerestapi.azurewebsites.net/api/v1 | /Books/1   | 200        |
+      | https://fakerestapi.azurewebsites.net/api/v1 | /Books/   | 200        |
 
   ### ---------------- Activities ---------------- ###
 
