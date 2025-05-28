@@ -4,17 +4,17 @@ Projeto em andamento para automação dos testes da API pública FakeRESTApi, ut
 🚀 Objetivo
 Automatizar testes da API FakeRESTApi com foco em:
 
-Testes automatizados para métodos HTTP (GET, POST, PUT, DELETE)
+✅ Testes automatizados para métodos HTTP (GET, POST, PUT, DELETE)
 
-Validações utilizando Hamcrest
+✅ Validações utilizando Hamcrest
 
-Escrita de cenários de teste com Cucumber (BDD)
+✅ Escrita de cenários de teste com Cucumber (BDD)
 
-Geração de evidências em PDF
+✅ Geração de evidências em PDF
 
-Execução automatizada com GitHub Actions e Jenkins
+✅ Execução automatizada com GitHub Actions e Jenkins
 
-Ambiente de execução isolado usando Docker
+✅ Ambiente de execução isolado usando Docker
 
 🛠️ Tecnologias Utilizadas
 Tecnologia	Finalidade
@@ -91,9 +91,9 @@ GitHub Actions: Automatização via workflows YAML
 Jenkins: Pipeline definido no Jenkinsfile para execução contínua e agendada
 
 🧾 Evidências e Relatórios
-Evidências geradas em PDF com detalhes da execução dos testes
+📄 Evidências geradas em PDF com detalhes da execução dos testes
 
-Utiliza biblioteca iText 9 para geração programática dos arquivos
+💼 Utiliza a biblioteca iText 9 para geração programática dos arquivos
 
 📌 Status do Projeto
 🚧 Em desenvolvimento – Estruturação de cenários, métodos da API e geração de evidências em andamento.
