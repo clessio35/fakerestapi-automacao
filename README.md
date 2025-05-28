@@ -36,20 +36,20 @@ fakerestapi-automacao/
 │   ├── main/                                                                                                   
 │   │   └── java/                                                                                                               
 │   │       └── fakerest/                                                                                                          
-│   │           ├── service/            # Lógica de consumo da API                                                              
-│   │           └── utils/              # Geração de evidências e Hooks                                                          
+│   │           ├── service/              # Lógica de consumo da API                                                              
+│   │           └── utils/                # Geração de evidências e Hooks                                                          
 │   └── test/                                                                                                                      
 │       ├── java/                                                                                                         
 │       │   └── fakerest/                                                                                                         
 │       │       ├── runner/             # RunnerTest para execução com Cucumber                                                  
 │       │       └── steps/              # Definição dos passos dos testes                                                         
 │       └── resources/
-│           ├── features/               # Arquivos .feature (BDD)                                                  
-│           └── evidences/              # Evidências geradas (PDFs)                                                  
-├── Dockerfile                          # Configuração de build Docker                                                  
-├── pom.xml                             # Arquivo de configuração do Maven                                                  
+│           ├── features/             # Arquivos .feature (BDD)                                                  
+│           └── evidences/            # Evidências geradas (PDFs)                                                  
+├── Dockerfile                        # Configuração de build Docker                                                  
+├── pom.xml                           # Arquivo de configuração do Maven                                                  
 
-
+             
 
 ▶️ Como Executar Localmente
 Pré-requisitos
