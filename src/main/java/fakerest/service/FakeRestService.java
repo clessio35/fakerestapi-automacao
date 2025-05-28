@@ -142,4 +142,24 @@ public class FakeRestService {
 	    .body("status", Matchers.instanceOf(Integer.class));
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
+
+	public void sendRequestPutForEndpoint(String endpoint) {
+		System.out.println("Send request PUT");
+		response = RestAssured.given().log().body()
+				.contentType(ContentType.JSON)
+				.when().body(payload().toString()).put(endpoint);
+	}
+
+	public void validateResponseUpdateMethod(String statusCode) throws IOException {
+		System.out.println("Validate response with Put method");
+		response.then().log().body()
+			.body("id", Matchers.instanceOf(Integer.class))
+			.body("title", Matchers.instanceOf(String.class))
+			.body("description", Matchers.instanceOf(String.class))
+			.body("pageCount", Matchers.instanceOf(Integer.class))
+			.body("excerpt", Matchers.instanceOf(String.class))
+			.body("publishDate", Matchers.notNullValue());
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+
+	}
 }
