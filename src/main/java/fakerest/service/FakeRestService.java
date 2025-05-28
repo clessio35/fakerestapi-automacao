@@ -7,9 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hamcrest.Matchers;
 import org.json.JSONObject;
+import org.junit.Assert;
 
 import com.github.javafaker.Faker;
 
@@ -153,6 +155,7 @@ public class FakeRestService {
 	public void validateResponseUpdateMethod(String statusCode) throws IOException {
 		System.out.println("Validate response with Put method");
 		response.then().log().body()
+			.statusCode(200)
 			.body("id", Matchers.instanceOf(Integer.class))
 			.body("title", Matchers.instanceOf(String.class))
 			.body("description", Matchers.instanceOf(String.class))
@@ -175,6 +178,19 @@ public class FakeRestService {
 		System.out.println("Validate status code delete method");
 		response.then().log().body()
 			.statusCode(200);
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+
+	public void validateResponseWithCompleteListActivities() throws IOException {
+		System.out.println("Validate List complete");
+		response.then().log().body().statusCode(200);
+		List<Map<String, Object>> list = response.jsonPath().getList("$");
+		for (Map<String, Object> item : list) {
+			Assert.assertTrue(item.get("id").getClass().equals(Integer.class));
+			Assert.assertTrue(item.get("title").getClass().equals(String.class));
+			Assert.assertTrue(item.get("dueDate").getClass().equals(String.class));
+			Assert.assertTrue(item.get("completed").getClass().equals(Boolean.class));
+	    }
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 	
