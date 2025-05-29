@@ -33,7 +33,7 @@ Feature: Testes de API - Fake REST API
   Scenario Outline: Criar livros com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
-    Then eu valido que a criação foi bem-sucedida
+    Then eu valido que a criação foi bem-sucedida "<endpoint>"
     Examples:
       | url                                    		   | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books   |
@@ -51,7 +51,7 @@ Feature: Testes de API - Fake REST API
   Scenario Outline: Atualizar dados de um livro existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
-    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>"
+    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                      | endpoint   | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books/1   | 200        |
@@ -82,23 +82,23 @@ Feature: Testes de API - Fake REST API
     When realizo uma request GET para "<endpoint>" e id
     Then eu valido os dados da atividade específica
     Examples:
-      | url                                      | endpoint     |
+      | url                                      		 | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Activities/ |
 
   @create-valid-activity
   Scenario Outline: Criar atividades com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
-    Then eu valido que a criação foi bem-sucedida
+    Then eu valido que a criação foi bem-sucedida "<endpoint>"
     Examples:
-      | url                                      | endpoint     |
+      | url                                          | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Activities   |
 
   @update-activity
   Scenario Outline: Atualizar dados de uma atividade existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
-    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>"
+    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                      | endpoint     | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Activities/1 | 200        |
@@ -145,7 +145,7 @@ Feature: Testes de API - Fake REST API
   Scenario Outline: Criar autores com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
-    Then eu valido que a criação foi bem-sucedida
+    Then eu valido que a criação foi bem-sucedida "<endpoint>"
     Examples:
       | url                                      | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors  |
@@ -154,7 +154,7 @@ Feature: Testes de API - Fake REST API
   Scenario Outline: Atualizar dados de um autor existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
-    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>"
+    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                      | endpoint   | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/1 | 200        |
@@ -192,7 +192,7 @@ Feature: Testes de API - Fake REST API
   Scenario Outline: Criar usuários com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
-    Then eu valido que a criação foi bem-sucedida
+    Then eu valido que a criação foi bem-sucedida "<endpoint>"
     Examples:
       | url                                      | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Users    |
@@ -201,7 +201,7 @@ Feature: Testes de API - Fake REST API
   Scenario Outline: Atualizar dados de um usuário existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
-    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>"
+    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                      | endpoint  | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Users/1   | 200        |
@@ -248,7 +248,7 @@ Feature: Testes de API - Fake REST API
   Scenario Outline: Criar capa com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
-    Then eu valido que a criação foi bem-sucedida
+    Then eu valido que a criação foi bem-sucedida "<endpoint>"
     Examples:
       | url                                      | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos |
@@ -257,7 +257,7 @@ Feature: Testes de API - Fake REST API
   Scenario Outline: Atualizar dados de uma capa existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
-    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>"
+    Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                      | endpoint       | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/1 | 200        |

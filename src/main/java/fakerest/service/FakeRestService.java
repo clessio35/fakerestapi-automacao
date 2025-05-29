@@ -4,7 +4,9 @@ import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.notNullValue;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,7 @@ import fakerest.utils.Hooks;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.response.ValidatableResponse;
 
 public class FakeRestService {
 
@@ -67,7 +70,6 @@ public class FakeRestService {
 		response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
 					.when().get(endpoint + id);
-		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
 	public void validateResponseSpecificBookId() throws IOException {
@@ -87,7 +89,7 @@ public class FakeRestService {
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 	
-	public JSONObject payload() {
+	public JSONObject payloadBooks() {
 		Faker fake = new Faker();
 		HashMap<String, Object> info = new HashMap<String, Object>();
 		info.put("id", fake.number().randomDigitNotZero());
@@ -98,24 +100,51 @@ public class FakeRestService {
 		JSONObject json = new JSONObject(info);
 		return json;
 	}
+	
+	public JSONObject payloadActivities() {
+		Faker fake = new Faker();
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+		String fDate = sdf.format(date);
+		HashMap<String, Object> info = new HashMap<String, Object>();
+		info.put("id", fake.number().randomDigitNotZero());
+		info.put("title", fake.book().title());
+		info.put("dueDate", fDate);
+		info.put("completed", true);
+		JSONObject json = new JSONObject(info);
+		return json;
+	}
 
 	public void sendRequestPostForEndpoint(String endpoint) {
 		System.out.println("Post method");
-		response = RestAssured.given().log().body()
+		if (endpoint.equalsIgnoreCase("/books")) {
+			response = RestAssured.given().log().body()
 					.when().contentType(ContentType.JSON)
-					.body(payload().toString()).post(endpoint);
+					.body(payloadBooks().toString()).post(endpoint);
+		}else if(endpoint.equalsIgnoreCase("/Activities")) {
+			response = RestAssured.given().log().body()
+					.when().contentType(ContentType.JSON)
+					.body(payloadActivities().toString()).post(endpoint);
+		}
 	}
 
-	public void validateResponsePostMethod() throws IOException {
+	public void validateResponsePostMethod(String endpoint) throws IOException {
 		System.out.println("Validate Post method");
-		response.then().log().body()
-		.statusCode(200)
-	    .body("id", Matchers.instanceOf(Integer.class))
-	    .body("title", Matchers.instanceOf(String.class))
-	    .body("description", Matchers.instanceOf(String.class))
-	    .body("pageCount", Matchers.instanceOf(Integer.class))
-	    .body("excerpt", Matchers.instanceOf(String.class))
-	    .body("publishDate", Matchers.notNullValue());
+		ValidatableResponse resp = response.then().log().body()
+				.statusCode(200);
+		if (endpoint.equalsIgnoreCase("/books")) {
+			resp.body("id", Matchers.instanceOf(Integer.class))
+		    .body("title", Matchers.instanceOf(String.class))
+		    .body("description", Matchers.instanceOf(String.class))
+		    .body("pageCount", Matchers.instanceOf(Integer.class))
+		    .body("excerpt", Matchers.instanceOf(String.class))
+		    .body("publishDate", Matchers.notNullValue());
+		}else if(endpoint.equalsIgnoreCase("/Activities")) {
+			resp.body("id", Matchers.instanceOf(Integer.class))
+		    .body("title", Matchers.instanceOf(String.class))
+		    .body("dueDate", Matchers.instanceOf(String.class))
+		    .body("completed", Matchers.instanceOf(Boolean.class));
+		}
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
@@ -147,13 +176,22 @@ public class FakeRestService {
 
 	public void sendRequestPutForEndpoint(String endpoint) {
 		System.out.println("Send request PUT");
-		response = RestAssured.given().log().body()
-				.contentType(ContentType.JSON)
-				.when().body(payload().toString()).put(endpoint);
+		if (endpoint.equalsIgnoreCase("/books")) {
+			System.out.println("PUT -> /books");
+			response = RestAssured.given().log().body()
+					.contentType(ContentType.JSON)
+					.when().body(payloadBooks().toString()).put(endpoint);
+		}else if(endpoint.equalsIgnoreCase("/Activities")) {
+			System.out.println("PUT -> /Activities");
+			response = RestAssured.given().log().body()
+					.contentType(ContentType.JSON)
+					.when().body(payloadActivities().toString()).put(endpoint);
+		}
 	}
 
-	public void validateResponseUpdateMethod(String statusCode) throws IOException {
+	public void validateResponseUpdateMethod(String statusCode, String endpoint) throws IOException {
 		System.out.println("Validate response with Put method");
+		if()
 		response.then().log().body()
 			.statusCode(200)
 			.body("id", Matchers.instanceOf(Integer.class))
@@ -193,5 +231,7 @@ public class FakeRestService {
 	    }
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
+
+
 	
 }

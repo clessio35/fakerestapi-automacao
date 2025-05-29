@@ -47,9 +47,9 @@ public class FakerestSteps {
 	    fake.sendRequestPostForEndpoint(endpoint);
 	}
 
-	@Then("eu valido que a criação foi bem-sucedida")
-	public void eu_valido_que_a_criação_foi_bem_sucedida() throws IOException {
-	    fake.validateResponsePostMethod();
+	@Then("eu valido que a criação foi bem-sucedida {string}")
+	public void eu_valido_que_a_criação_foi_bem_sucedida(String endpoint) throws IOException {
+	    fake.validateResponsePostMethod(endpoint);
 	}
 
 	@When("realizo uma request POST para {string} com dados inválidos")
@@ -67,9 +67,9 @@ public class FakerestSteps {
 		fake.sendRequestPutForEndpoint(endpoint);
 	}
 
-	@Then("eu valido que os dados foram atualizados corretamente com status {string}")
-	public void eu_valido_que_os_dados_foram_atualizados_corretamente_com_status(String statusCode) throws IOException {
-	    fake.validateResponseUpdateMethod(statusCode);
+	@Then("eu valido que os dados foram atualizados corretamente com status {string} {string}")
+	public void eu_valido_que_os_dados_foram_atualizados_corretamente_com_status(String statusCode, String endpoint) throws IOException {
+	    fake.validateResponseUpdateMethod(statusCode, endpoint);
 	}
 
 	@When("realizo uma request DELETE para {string}")
@@ -88,9 +88,8 @@ public class FakerestSteps {
 	}
 
 	@Then("eu valido os dados da atividade específica")
-	public void eu_valido_os_dados_da_atividade_específica() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_os_dados_da_atividade_específica() throws IOException {
+		 fake.validateResponseSpecificBookId();
 	}
 
 	@Then("eu valido a resposta com a lista completa de autores")
