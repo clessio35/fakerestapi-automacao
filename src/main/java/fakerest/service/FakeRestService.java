@@ -61,6 +61,7 @@ public class FakeRestService {
 				response.then().statusCode(200);
 		List<Integer> ids = new ArrayList<Integer>();
 		ids = response.jsonPath().getList("id");
+		System.out.println(ids.stream().findFirst().orElse(-1));
 		return ids.stream().findFirst().orElse(-1);
 	}
 
@@ -211,10 +212,17 @@ public class FakeRestService {
 
 	public void sendRequestDeleteWithEndpoint(String endpoint) {
 		System.out.println("Send request Delete");
-		int id = captureIdBook(endpoint);
-		response = RestAssured.given().log().body()
-				.contentType(ContentType.JSON)
-				.when().delete(endpoint + id);
+		if(endpoint.equalsIgnoreCase("/Books")) {
+			int id = captureIdBook(endpoint);
+			response = RestAssured.given().log().body()
+					.contentType(ContentType.JSON)
+					.when().delete(endpoint + id);			
+		}else if(endpoint.equalsIgnoreCase("/Activities/")) {
+			int id = captureIdBook(endpoint);
+			response = RestAssured.given().log().body()
+					.contentType(ContentType.JSON)
+					.when().delete(endpoint + id);
+		}
 	}
 
 	public void validateResponseDeleteMethod(String statusCode) throws IOException {
