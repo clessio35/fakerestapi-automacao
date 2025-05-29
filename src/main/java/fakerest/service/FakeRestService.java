@@ -181,7 +181,7 @@ public class FakeRestService {
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
 					.when().body(payloadBooks().toString()).put(endpoint);
-		}else if(endpoint.equalsIgnoreCase("/Activities")) {
+		}else if(endpoint.equalsIgnoreCase("/Activities/1")) {
 			System.out.println("PUT -> /Activities");
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
@@ -191,17 +191,22 @@ public class FakeRestService {
 
 	public void validateResponseUpdateMethod(String statusCode, String endpoint) throws IOException {
 		System.out.println("Validate response with Put method");
-		if()
-		response.then().log().body()
-			.statusCode(200)
-			.body("id", Matchers.instanceOf(Integer.class))
+		ValidatableResponse request = response.then().log().body()
+		.statusCode(200);
+		if(endpoint.equalsIgnoreCase("/books")){
+			request.body("id", Matchers.instanceOf(Integer.class))
 			.body("title", Matchers.instanceOf(String.class))
 			.body("description", Matchers.instanceOf(String.class))
 			.body("pageCount", Matchers.instanceOf(Integer.class))
 			.body("excerpt", Matchers.instanceOf(String.class))
 			.body("publishDate", Matchers.notNullValue());
+		}else if(endpoint.equalsIgnoreCase("/Activities")) {
+			request.body("id", Matchers.instanceOf(Integer.class))
+		    .body("title", Matchers.instanceOf(String.class))
+		    .body("dueDate", Matchers.instanceOf(String.class))
+		    .body("completed", Matchers.instanceOf(Boolean.class));
+		}
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
-
 	}
 
 	public void sendRequestDeleteWithEndpoint(String endpoint) {
