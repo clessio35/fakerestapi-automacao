@@ -93,9 +93,8 @@ public class FakerestSteps {
 	}
 
 	@Then("eu valido a resposta com a lista completa de autores")
-	public void eu_valido_a_resposta_com_a_lista_completa_de_autores() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_a_resposta_com_a_lista_completa_de_autores() throws IOException {
+	    fake.validateResponseAuthorsCompleteList();
 	}
 
 	@Then("eu valido os dados do autor específico")

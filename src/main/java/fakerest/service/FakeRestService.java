@@ -245,6 +245,24 @@ public class FakeRestService {
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
+	public void validateResponseAuthorsCompleteList() throws IOException {
+		System.out.println("Validate complete list");
+		response.then().log().body().extract().response();
+		List<Map<String, Object>> authors = response.jsonPath().getList("$");
+		for(Map<String, Object> author : authors) {
+			int id = (int) author.get("id");
+			int idBook = (int) author.get("idBook");
+			String firstName = (String) author.get("firstName");
+			String lastName = (String) author.get("lastName");
+			Assert.assertNotNull(id);
+			Assert.assertNotNull(idBook);
+			Assert.assertNotNull(firstName, "O campo 'firstName' está nulo");
+			Assert.assertNotNull(lastName, "O campo 'lastName' está nulo");
+			System.out.println("validate!");
+		}
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+
 
 	
 }
