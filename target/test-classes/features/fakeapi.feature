@@ -165,8 +165,8 @@ Feature: Testes de API - Fake REST API
     When realizo uma request DELETE para "<endpoint>"
     Then eu valido o status de resposta "<statusCode>"
     Examples:
-      | url                                      | endpoint   | statusCode |
-      | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/1 | 200        |
+      | url                                		       | endpoint   | statusCode |
+      | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/ | 200        |
 
   ### ---------------- Users ---------------- ###
 
