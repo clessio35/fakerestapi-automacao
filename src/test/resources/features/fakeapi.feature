@@ -156,7 +156,7 @@ Feature: Testes de API - Fake REST API
     When realizo uma request PUT para "<endpoint>" com novos dados
     Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
-      | url                                      | endpoint   | statusCode |
+      | url                                   		   | endpoint   | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/1 | 200        |
 
   @delete-author
