@@ -115,6 +115,17 @@ public class FakeRestService {
 		JSONObject json = new JSONObject(info);
 		return json;
 	}
+	
+	public JSONObject payloadAuthors() {
+		Faker fake = new Faker();
+		HashMap<String, Object> info = new HashMap<String, Object>();
+		info.put("id", fake.number().randomDigitNotZero());
+		info.put("idBook", fake.number().randomDigitNotZero());
+		info.put("firstName", fake.name().firstName());
+		info.put("lastName", fake.name().lastName());
+		JSONObject json = new JSONObject(info);
+		return json;
+	}
 
 	public void sendRequestPostForEndpoint(String endpoint) {
 		System.out.println("Post method");
@@ -126,6 +137,10 @@ public class FakeRestService {
 			response = RestAssured.given().log().body()
 					.when().contentType(ContentType.JSON)
 					.body(payloadActivities().toString()).post(endpoint);
+		}else if(endpoint.equalsIgnoreCase("/Authors")) {
+			response = RestAssured.given().log().body()
+					.when().contentType(ContentType.JSON)
+					.body(payloadAuthors().toString()).post(endpoint);
 		}
 	}
 
@@ -145,6 +160,12 @@ public class FakeRestService {
 		    .body("title", Matchers.instanceOf(String.class))
 		    .body("dueDate", Matchers.instanceOf(String.class))
 		    .body("completed", Matchers.instanceOf(Boolean.class));
+		}else if(endpoint.equalsIgnoreCase("/Authors")) {
+			resp.body("id", Matchers.instanceOf(Integer.class))
+			.body("idBook", Matchers.instanceOf(Integer.class))
+			.body("firstName", Matchers.instanceOf(String.class))
+			.body("lastName", Matchers.instanceOf(String.class))
+			.extract().response();
 		}
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
