@@ -138,7 +138,7 @@ Feature: Testes de API - Fake REST API
     When realizo uma request GET para "<endpoint>"
     Then eu valido os autores relacionados ao livro
     Examples:
-      | url                                      | endpoint                  |
+      | url                                      		 | endpoint                  |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/authors/books/1 |
 
   @create-valid-author
