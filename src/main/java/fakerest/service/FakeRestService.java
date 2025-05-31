@@ -247,7 +247,7 @@ public class FakeRestService {
 
 	public void validateResponseAuthorsCompleteList() throws IOException {
 		System.out.println("Validate complete list");
-		response.then().log().body().extract().response();
+		response.then().statusCode(200).log().body().extract().response();
 		List<Map<String, Object>> authors = response.jsonPath().getList("$");
 		for(Map<String, Object> author : authors) {
 			int id = (int) author.get("id");
@@ -260,6 +260,17 @@ public class FakeRestService {
 			Assert.assertNotNull(lastName, "O campo 'lastName' está nulo");
 			System.out.println("validate!");
 		}
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+
+	public void validateResponseSpecificAuthor() throws IOException {
+		System.out.println("Validate Specific author");
+		response.then().statusCode(200).log().body()
+			.body("id", Matchers.instanceOf(Integer.class))
+			.body("idBook", Matchers.instanceOf(Integer.class))
+			.body("firstName", Matchers.instanceOf(String.class))
+			.body("lastName", Matchers.instanceOf(String.class))
+			.extract().response();
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 

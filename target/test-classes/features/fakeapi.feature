@@ -129,7 +129,7 @@ Feature: Testes de API - Fake REST API
     When realizo uma request GET para "<endpoint>" e id
     Then eu valido os dados do autor específico
     Examples:
-      | url                                      | endpoint   |
+      | url                                     		 | endpoint   |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/   |
 
   @authors-books
