@@ -329,6 +329,21 @@ public class FakeRestService {
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
+	public void validateResponseCompleteUserList() throws IOException {
+		System.out.println("Validate Complete UserList");
+		response.then().statusCode(200).log().body().extract();
+		List<Map<String, Object>> userList = response.jsonPath().getList("$");
+		for(Map<String, Object> user : userList) {
+			int id = (Integer) user.get("id");
+			String userName = (String) user.get("userName");
+			String password = (String) user.get("password");
+			 Assert.assertNotNull("User ID is null", id);
+		        Assert.assertNotNull("Username is null for user with ID: " + id, userName);
+		        Assert.assertNotNull("Password is null for user with ID: " + id, password);
+		}
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+
 
 	
 }
