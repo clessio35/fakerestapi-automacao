@@ -126,6 +126,15 @@ public class FakeRestService {
 		JSONObject json = new JSONObject(info);
 		return json;
 	}
+	public JSONObject payloadUsers() {
+		Faker fake = new Faker();
+		HashMap<String, Object> info = new HashMap<String, Object>();
+		info.put("id", fake.number().randomDigitNotZero());
+		info.put("userName", fake.name().firstName());
+		info.put("password", fake.internet().password());
+		JSONObject json = new JSONObject(info);
+		return json;
+	}
 
 	public void sendRequestPostForEndpoint(String endpoint) {
 		System.out.println("Post method");
@@ -141,30 +150,40 @@ public class FakeRestService {
 			response = RestAssured.given().log().body()
 					.when().contentType(ContentType.JSON)
 					.body(payloadAuthors().toString()).post(endpoint);
+		}else if(endpoint.equalsIgnoreCase("/Users")) {
+			response = RestAssured.given().log().body()
+					.when().contentType(ContentType.JSON)
+					.body(payloadUsers().toString()).post(endpoint);
 		}
 	}
 
 	public void validateResponsePostMethod(String endpoint) throws IOException {
 		System.out.println("Validate Post method");
-		ValidatableResponse resp = response.then().log().body()
-				.statusCode(200);
+		ValidatableResponse resp = response.then().statusCode(200).log().body();
 		if (endpoint.equalsIgnoreCase("/books")) {
 			resp.body("id", Matchers.instanceOf(Integer.class))
 		    .body("title", Matchers.instanceOf(String.class))
 		    .body("description", Matchers.instanceOf(String.class))
 		    .body("pageCount", Matchers.instanceOf(Integer.class))
 		    .body("excerpt", Matchers.instanceOf(String.class))
-		    .body("publishDate", Matchers.notNullValue());
+		    .body("publishDate", Matchers.notNullValue())
+		    .extract().response();
 		}else if(endpoint.equalsIgnoreCase("/Activities")) {
 			resp.body("id", Matchers.instanceOf(Integer.class))
 		    .body("title", Matchers.instanceOf(String.class))
 		    .body("dueDate", Matchers.instanceOf(String.class))
-		    .body("completed", Matchers.instanceOf(Boolean.class));
+		    .body("completed", Matchers.instanceOf(Boolean.class))
+			.extract().response();
 		}else if(endpoint.equalsIgnoreCase("/Authors")) {
 			resp.body("id", Matchers.instanceOf(Integer.class))
 			.body("idBook", Matchers.instanceOf(Integer.class))
 			.body("firstName", Matchers.instanceOf(String.class))
 			.body("lastName", Matchers.instanceOf(String.class))
+			.extract().response();
+		}else if(endpoint.equalsIgnoreCase("/Users")) {
+			resp.body("id", Matchers.instanceOf(Integer.class))
+			.body("userName", Matchers.instanceOf(String.class))
+			.body("password", Matchers.instanceOf(String.class))
 			.extract().response();
 		}
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
