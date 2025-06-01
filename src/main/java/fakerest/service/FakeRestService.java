@@ -344,6 +344,16 @@ public class FakeRestService {
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
+	public void validateResponseSpecificUser() throws IOException {
+		System.out.println("Validate Specific user");
+		response.then().statusCode(200).log().body()
+			.body("id", Matchers.instanceOf(Integer.class))
+			.body("userName", Matchers.instanceOf(String.class))
+			.body("password", Matchers.instanceOf(String.class))
+			.extract();
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+
 
 	
 }

@@ -113,13 +113,12 @@ public class FakerestSteps {
 	}
 
 	@Then("eu valido os dados do usuário específico")
-	public void eu_valido_os_dados_do_usuário_específico() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_os_dados_do_usuário_específico() throws IOException {
+	    fake.validateResponseSpecificUser();
 	}
 
 	@Then("eu valido a resposta com a lista completa de capas")
-	public void eu_valido_a_resposta_com_a_lista_completa_de_capas() {
+	public void eu_valido_a_resposta_com_a_lista_completa_de_capas() throws IOException {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new io.cucumber.java.PendingException();
 	}
