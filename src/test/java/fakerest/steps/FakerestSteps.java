@@ -119,8 +119,7 @@ public class FakerestSteps {
 
 	@Then("eu valido a resposta com a lista completa de capas")
 	public void eu_valido_a_resposta_com_a_lista_completa_de_capas() throws IOException {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	    fake.validateResponseWithCompleteCapasList();
 	}
 
 	@Then("eu valido os dados da capa específica")

@@ -388,6 +388,21 @@ public class FakeRestService {
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
+	public void validateResponseWithCompleteCapasList() throws IOException {
+		System.out.println("Validate complete capas list");
+		response.then().statusCode(200).log().body().extract();
+		List<Map<String, Object>> photos = response.jsonPath().getList("$");
+		for(Map<String, Object> photo : photos) {
+			int id = (int) photo.get("id");
+			int idBoot = (int) photo.get("idBook");
+			String url = (String) photo.get("url");
+			Assert.assertNotNull("is null or empty", id);
+			Assert.assertNotNull("is null or empty", idBoot);
+			Assert.assertNotNull("url is null or empty", url);
+		}
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+
 
 	
 }

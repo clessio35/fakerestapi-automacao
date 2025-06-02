@@ -223,7 +223,7 @@ Feature: Testes de API - Fake REST API
     When realizo uma request GET para "<endpoint>"
     Then eu valido a resposta com a lista completa de capas
     Examples:
-      | url                                      | endpoint     |
+      | url                                   		   | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos |
 
   @coverphoto-details
