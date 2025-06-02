@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
     features = "src/test/resources/features",
     glue = {"fakerest.steps", "fakerest.utils"},
-    tags = "@coverphoto-by-book", 
+    tags = "@create-valid-coverphoto", 
     publish = true,
     plugin = {"pretty", "html:target/cucumber-reports"}
 )

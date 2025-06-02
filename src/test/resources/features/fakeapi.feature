@@ -250,7 +250,7 @@ Feature: Testes de API - Fake REST API
     When realizo uma request POST para "<endpoint>"
     Then eu valido que a criação foi bem-sucedida "<endpoint>"
     Examples:
-      | url                                      | endpoint     |
+      | url     		                                 | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos |
 
   @update-coverphoto
