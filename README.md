@@ -1,5 +1,5 @@
 🧪 Automação de Testes - FakeRESTApi
-Projeto em andamento para automação dos testes da API pública FakeRESTApi, utilizando Java 17 com Cucumber, RestAssured e Hamcrest. Inclui geração de evidências em PDF, integração contínua com GitHub Actions e Jenkins, e execução em ambientes isolados via Docker.
+Automação dos testes da API pública FakeRESTApi, utilizando Java 17 com Cucumber, RestAssured e Hamcrest. Inclui geração de evidências em PDF, integração contínua com GitHub Actions e Jenkins, e execução em ambientes isolados via Docker.
 
 🚀 Objetivo
 Automatizar testes da API FakeRESTApi com foco em:
