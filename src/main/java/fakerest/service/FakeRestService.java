@@ -327,6 +327,11 @@ public class FakeRestService {
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
 					.when().delete(endpoint + id);
+		}else if(endpoint.equalsIgnoreCase("/CoverPhotos/")) {
+			int id = captureIdBook(endpoint);
+			response = RestAssured.given().log().body()
+					.contentType(ContentType.JSON)
+					.when().delete(endpoint + id);
 		}
 	}
 
