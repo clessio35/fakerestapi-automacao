@@ -2,7 +2,7 @@ Feature: Testes de API - Fake REST API
 
   ### ---------------- Books ---------------- ###
 
-  @list-books
+  @list-books @all
   Scenario: Listar todos os livros
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>"
@@ -11,7 +11,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books   |
 
-  @book-details
+  @book-details @all
   Scenario: Obter detalhes de um livro existente
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>" e id
@@ -20,7 +20,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books/  |
 
-  @nonexistent-book
+  @nonexistent-book @all
   Scenario: Obter detalhes de um livro inexistente
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>"
@@ -29,7 +29,7 @@ Feature: Testes de API - Fake REST API
       | url                                     	 	 | endpoint    | status |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books/9999 | 404    |
 
-  @create-valid-book
+  @create-valid-book @all
   Scenario Outline: Criar livros com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
@@ -38,7 +38,7 @@ Feature: Testes de API - Fake REST API
       | url                                    		   | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books   |
 
-  @create-invalid-book
+  @create-invalid-book @all
   Scenario Outline: Criar livros com dados inválidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>" com dados inválidos
@@ -47,7 +47,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books   |
 
-  @update-book
+  @update-book @all
   Scenario Outline: Atualizar dados de um livro existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
@@ -56,7 +56,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint   | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Books/   | 200        |
 
-  @delete-book
+  @delete-book @all
   Scenario: Excluir livro existente
     Given que acesso a API "<url>"
     When realizo uma request DELETE para "<endpoint>"
@@ -67,7 +67,7 @@ Feature: Testes de API - Fake REST API
 
   ### ---------------- Activities ---------------- ###
 
-  @list-activities
+  @list-activities @all
   Scenario: Listar todas as atividades
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>"
@@ -76,7 +76,7 @@ Feature: Testes de API - Fake REST API
       | url                                 		     | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Activities   |
 
-  @activity-details
+  @activity-details @all
   Scenario: Obter detalhes de uma atividade existente
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>" e id
@@ -85,7 +85,7 @@ Feature: Testes de API - Fake REST API
       | url                                      		 | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Activities/ |
 
-  @create-valid-activity
+  @create-valid-activity @all
   Scenario Outline: Criar atividades com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
@@ -94,7 +94,7 @@ Feature: Testes de API - Fake REST API
       | url                                          | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Activities   |
 
-  @update-activity
+  @update-activity @all
   Scenario Outline: Atualizar dados de uma atividade existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
@@ -103,7 +103,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint     | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Activities/ | 200        |
 
-  @delete-activity
+  @delete-activity @all
   Scenario: Excluir atividade existente
     Given que acesso a API "<url>"
     When realizo uma request DELETE para "<endpoint>"
@@ -114,7 +114,7 @@ Feature: Testes de API - Fake REST API
 
   ### ---------------- Authors ---------------- ###
 
-  @list-authors
+  @list-authors @all
   Scenario: Listar todos os autores
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>"
@@ -123,7 +123,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint   |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors    |
 
-  @author-details
+  @author-details @all
   Scenario: Obter detalhes de um autor existente
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>" e id
@@ -132,7 +132,7 @@ Feature: Testes de API - Fake REST API
       | url                                     		 | endpoint   |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/   |
 
-  @authors-books
+  @authors-books @all
   Scenario: Listar autores de um livro específico
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>"
@@ -141,7 +141,7 @@ Feature: Testes de API - Fake REST API
       | url                                      		 | endpoint                  |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/authors/books/1 |
 
-  @create-valid-author
+  @create-valid-author @all
   Scenario Outline: Criar autores com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
@@ -150,7 +150,7 @@ Feature: Testes de API - Fake REST API
       | url                                     	   | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Authors  |
 
-  @update-author
+  @update-author @all
   Scenario Outline: Atualizar dados de um autor existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
@@ -170,7 +170,7 @@ Feature: Testes de API - Fake REST API
 
   ### ---------------- Users ---------------- ###
 
-  @list-users
+  @list-users @all
   Scenario: Listar todos os usuários
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>"
@@ -179,7 +179,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Users    |
 
-  @user-details
+  @user-details @all
   Scenario: Obter detalhes de um usuário existente
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>" e id
@@ -188,7 +188,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Users/   |
 
-  @create-valid-user
+  @create-valid-user @all
   Scenario Outline: Criar usuários com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
@@ -197,7 +197,7 @@ Feature: Testes de API - Fake REST API
       | url                                     		 | endpoint |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Users    |
 
-  @update-user
+  @update-user @all
   Scenario Outline: Atualizar dados de um usuário existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
@@ -206,7 +206,7 @@ Feature: Testes de API - Fake REST API
       | url                                      | endpoint  | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /Users/  | 200        |
 
-  @delete-user
+  @delete-user @all
   Scenario: Excluir usuário existente
     Given que acesso a API "<url>"
     When realizo uma request DELETE para "<endpoint>"
@@ -217,7 +217,7 @@ Feature: Testes de API - Fake REST API
 
   ### ---------------- CoverPhotos ---------------- ###
 
-  @list-coverphotos
+  @list-coverphotos @all
   Scenario: Listar todas as capas de livros
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>"
@@ -226,7 +226,7 @@ Feature: Testes de API - Fake REST API
       | url                                   		   | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos |
 
-  @coverphoto-details
+  @coverphoto-details @all
   Scenario: Obter detalhes de uma capa existente
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>" e id
@@ -235,7 +235,7 @@ Feature: Testes de API - Fake REST API
       | url                                  		     | endpoint       |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/  |
 
-  @coverphoto-by-book
+  @coverphoto-by-book @all
   Scenario: Obter capa de um livro específico
     Given que acesso a API "<url>"
     When realizo uma request GET para "<endpoint>"
@@ -244,7 +244,7 @@ Feature: Testes de API - Fake REST API
       | url                                    		   | endpoint                    |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/books/covers/1 |
 
-  @create-valid-coverphoto
+  @create-valid-coverphoto @all
   Scenario Outline: Criar capa com dados válidos
     Given que acesso a API "<url>"
     When realizo uma request POST para "<endpoint>"
@@ -253,7 +253,7 @@ Feature: Testes de API - Fake REST API
       | url     		                                 | endpoint     |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos |
 
-  @update-coverphoto
+  @update-coverphoto @all
   Scenario Outline: Atualizar dados de uma capa existente
     Given que acesso a API "<url>"
     When realizo uma request PUT para "<endpoint>" com novos dados
@@ -262,7 +262,7 @@ Feature: Testes de API - Fake REST API
       | url                                      		 | endpoint       | statusCode |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/ | 200        |
 
-  @delete-coverphoto
+  @delete-coverphoto @all
   Scenario: Excluir capa existente
     Given que acesso a API "<url>"
     When realizo uma request DELETE para "<endpoint>"

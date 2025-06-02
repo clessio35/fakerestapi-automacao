@@ -84,7 +84,7 @@ public class FakeRestService {
 	public void validateResponseWithErrorCode(String status) throws IOException {
 		int sc = Integer.parseInt(status);
 		System.out.println("Validate response with error");
-		response.then().log().body().statusCode(200)
+		response.then().log().body().statusCode(404)
 			.body("title", Matchers.equalTo("Not Found"))
 			.body("status", Matchers.equalTo(sc));
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
@@ -307,7 +307,7 @@ public class FakeRestService {
 
 	public void sendRequestDeleteWithEndpoint(String endpoint) {
 		System.out.println("Send request Delete");
-		if(endpoint.equalsIgnoreCase("/Books")) {
+		if(endpoint.equalsIgnoreCase("/Books/")) {
 			int id = captureIdBook(endpoint);
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
