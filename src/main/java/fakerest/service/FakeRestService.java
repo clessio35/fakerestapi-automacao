@@ -232,6 +232,11 @@ public class FakeRestService {
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
 					.when().body(payloadAuthors().toString()).put(endpoint);
+		}else if(endpoint.equalsIgnoreCase("/Users/1")) {
+			System.out.println("PUT -> /Users/1");
+			response = RestAssured.given().log().body()
+					.contentType(ContentType.JSON)
+					.when().body(payloadUsers().toString()).put(endpoint);
 		}
 	}
 
@@ -256,6 +261,11 @@ public class FakeRestService {
 			.body("idBook", Matchers.instanceOf(Integer.class))
 			.body("firstName", Matchers.instanceOf(String.class))
 			.body("lastName", Matchers.instanceOf(String.class))
+			.extract().response();
+		}else if(endpoint.equalsIgnoreCase("/Users")) {
+			request.body("id", Matchers.instanceOf(Integer.class))
+			.body("userName", Matchers.instanceOf(String.class))
+			.body("password", Matchers.instanceOf(String.class))
 			.extract().response();
 		}
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
