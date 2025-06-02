@@ -128,9 +128,8 @@ public class FakerestSteps {
 	}
 
 	@Then("eu valido a imagem de capa do livro")
-	public void eu_valido_a_imagem_de_capa_do_livro() {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new io.cucumber.java.PendingException();
+	public void eu_valido_a_imagem_de_capa_do_livro() throws IOException {
+	    fake.validateResponseCoverPhoto();
 	}
 
 }

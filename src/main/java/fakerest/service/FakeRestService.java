@@ -413,6 +413,16 @@ public class FakeRestService {
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
+	public void validateResponseCoverPhoto() throws IOException {
+		System.out.println("Validate cover photo");
+		response.then().statusCode(200).log().body()
+		.body("[0].id", Matchers.instanceOf(Integer.class))
+		.body("[0].idBook", Matchers.instanceOf(Integer.class))
+		.body("[0].url", Matchers.instanceOf(String.class))
+		.extract();
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+
 
 	
 }

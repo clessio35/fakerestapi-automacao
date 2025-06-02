@@ -241,7 +241,7 @@ Feature: Testes de API - Fake REST API
     When realizo uma request GET para "<endpoint>"
     Then eu valido a imagem de capa do livro
     Examples:
-      | url                                      | endpoint                    |
+      | url                                    		   | endpoint                    |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/books/covers/1 |
 
   @create-valid-coverphoto
