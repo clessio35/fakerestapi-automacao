@@ -403,6 +403,16 @@ public class FakeRestService {
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
 	}
 
+	public void validateResponseSpecificPhoto() throws IOException {
+		System.out.println("Validate Specific photo");
+		response.then().statusCode(200).log().body()
+		.body("id", Matchers.instanceOf(Integer.class))
+		.body("idBook", Matchers.instanceOf(Integer.class))
+		.body("url", Matchers.instanceOf(String.class))
+		.extract();
+		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
+	}
+
 
 	
 }

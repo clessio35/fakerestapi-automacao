@@ -232,7 +232,7 @@ Feature: Testes de API - Fake REST API
     When realizo uma request GET para "<endpoint>" e id
     Then eu valido os dados da capa específica
     Examples:
-      | url                                      | endpoint       |
+      | url                                  		     | endpoint       |
       | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/  |
 
   @coverphoto-by-book
