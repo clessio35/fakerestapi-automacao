@@ -54,7 +54,7 @@ Feature: Testes de API - Fake REST API
     Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                      | endpoint   | statusCode |
-      | https://fakerestapi.azurewebsites.net/api/v1 | /Books/1   | 200        |
+      | https://fakerestapi.azurewebsites.net/api/v1 | /Books/   | 200        |
 
   @delete-book
   Scenario: Excluir livro existente
@@ -101,7 +101,7 @@ Feature: Testes de API - Fake REST API
     Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                      | endpoint     | statusCode |
-      | https://fakerestapi.azurewebsites.net/api/v1 | /Activities/1 | 200        |
+      | https://fakerestapi.azurewebsites.net/api/v1 | /Activities/ | 200        |
 
   @delete-activity
   Scenario: Excluir atividade existente
@@ -157,7 +157,7 @@ Feature: Testes de API - Fake REST API
     Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                   		   | endpoint   | statusCode |
-      | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/1 | 200        |
+      | https://fakerestapi.azurewebsites.net/api/v1 | /Authors/ | 200        |
 
   @delete-author
   Scenario: Excluir autor existente
@@ -204,7 +204,7 @@ Feature: Testes de API - Fake REST API
     Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
       | url                                      | endpoint  | statusCode |
-      | https://fakerestapi.azurewebsites.net/api/v1 | /Users/1   | 200        |
+      | https://fakerestapi.azurewebsites.net/api/v1 | /Users/  | 200        |
 
   @delete-user
   Scenario: Excluir usuário existente
@@ -259,8 +259,8 @@ Feature: Testes de API - Fake REST API
     When realizo uma request PUT para "<endpoint>" com novos dados
     Then eu valido que os dados foram atualizados corretamente com status "<statusCode>" "<endpoint>"
     Examples:
-      | url                                      | endpoint       | statusCode |
-      | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/1 | 200        |
+      | url                                      		 | endpoint       | statusCode |
+      | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/ | 200        |
 
   @delete-coverphoto
   Scenario: Excluir capa existente
@@ -268,5 +268,5 @@ Feature: Testes de API - Fake REST API
     When realizo uma request DELETE para "<endpoint>"
     Then eu valido o status de resposta "<statusCode>"
     Examples:
-      | url                                      | endpoint       | statusCode |
-      | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/1 | 200        |
+      | url                                    		   | endpoint       | statusCode |
+      | https://fakerestapi.azurewebsites.net/api/v1 | /CoverPhotos/	| 200        |

@@ -235,26 +235,37 @@ public class FakeRestService {
 
 	public void sendRequestPutForEndpoint(String endpoint) {
 		System.out.println("Send request PUT");
+		int id = captureIdBook(endpoint);
 		if (endpoint.equalsIgnoreCase("/books")) {
 			System.out.println("PUT -> /books");
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
-					.when().body(payloadBooks().toString()).put(endpoint);
-		}else if(endpoint.equalsIgnoreCase("/Activities/1")) {
+					.when().body(payloadBooks().toString()).put(endpoint + id);
+		}else if(endpoint.equalsIgnoreCase("/Activities/")) {
 			System.out.println("PUT -> /Activities");
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
-					.when().body(payloadActivities().toString()).put(endpoint);
-		}else if(endpoint.equalsIgnoreCase("/Authors/1")) {
-			System.out.println("PUT -> /Authors/1");
+					.when().body(payloadActivities().toString()).put(endpoint + id);
+		}else if(endpoint.equalsIgnoreCase("/Authors/")) {
+			System.out.println("PUT -> /Authors/");
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
-					.when().body(payloadAuthors().toString()).put(endpoint);
-		}else if(endpoint.equalsIgnoreCase("/Users/1")) {
-			System.out.println("PUT -> /Users/1");
+					.when().body(payloadAuthors().toString()).put(endpoint + id);
+		}else if(endpoint.equalsIgnoreCase("/Users/")) {
+			System.out.println("PUT -> /Users/");
 			response = RestAssured.given().log().body()
 					.contentType(ContentType.JSON)
-					.when().body(payloadUsers().toString()).put(endpoint);
+					.when().body(payloadUsers().toString()).put(endpoint + id);
+		}else if(endpoint.equalsIgnoreCase("/Users/")) {
+			System.out.println("PUT -> /Users/");
+			response = RestAssured.given().log().body()
+					.contentType(ContentType.JSON)
+					.when().body(payloadUsers().toString()).put(endpoint + id);
+		}else if(endpoint.equalsIgnoreCase("/CoverPhotos/")) {
+			System.out.println("PUT -> /CoverPhotos/");
+			response = RestAssured.given().log().body()
+					.contentType(ContentType.JSON)
+					.when().body(payloadCoverPhotos().toString()).put(endpoint + id);
 		}
 	}
 
@@ -284,6 +295,11 @@ public class FakeRestService {
 			request.body("id", Matchers.instanceOf(Integer.class))
 			.body("userName", Matchers.instanceOf(String.class))
 			.body("password", Matchers.instanceOf(String.class))
+			.extract().response();
+		}else if(endpoint.equalsIgnoreCase("/CoverPhotos")) {
+			request.body("id", Matchers.instanceOf(Integer.class))
+			.body("idBook", Matchers.instanceOf(Integer.class))
+			.body("url", Matchers.instanceOf(String.class))
 			.extract().response();
 		}
 		EvidenceUtils.takeScreenshot(response, Hooks.getScenarioName());
