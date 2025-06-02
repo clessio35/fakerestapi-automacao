@@ -85,7 +85,8 @@ CMD ["mvn", "clean", "test"]
 
 ### 📸 Exemplo de Job Agendado no Jenkins
 
-![Jenkins Job](./imgs/jenkins-job-fakerestapi.png)
+![Jenkins Job](./images/jenkins-job-fakerestapi.png)
+
 
 ---
 
