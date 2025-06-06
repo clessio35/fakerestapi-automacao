@@ -1,0 +1,12 @@
+stages:
+  - test
+
+test_automation:
+  stage: test
+  image: maven:3.8.5-openjdk-17
+  script:
+    - mvn clean test
+  artifacts:
+    paths:
+      - target/allure-results/
+    expire_in: 1 week
